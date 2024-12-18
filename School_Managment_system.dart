@@ -1,4 +1,5 @@
 import 'dart:io';
+
 void main(){
 
   List<dynamic> students = [
@@ -12,15 +13,46 @@ void main(){
     print('');
    });
 
-//----------------------------------------------------------------------------------
+//----------------------------------Search by Roll Number------------------------------------------------
 
    print("Enter Your Roll No :");
 
    String? input = stdin.readLineSync();
    int input2 = int.parse(input!);
 
-   students.where((element) => element['roll_no'] == input2);
+   students.map((element) => element['roll_no'] == input2);
    var search_roll = students.firstWhere((element) => element['roll_no'] == input2);
    print('${search_roll}');
-   
-}
+   print('');
+
+//---------------------------------update Grades----------------------------------------------------
+    
+
+    print("Enter the roll no for update the grades");
+    
+    String? input3 = stdin.readLineSync();
+    int input4 = int.parse(input3!);
+     
+     var std = students.firstWhere((e) => e['roll_no'] == input4);
+    
+    if(std != null){
+      
+      print("Enter the subject");
+      String? input7 = stdin.readLineSync();
+
+      print("Enter grades :");
+      String? input5 = stdin.readLineSync();
+      int input6 = int.parse(input5!);
+
+      std['grades'][input7] = input6;
+
+      print(std);
+
+    }else{
+      print("Not found");
+    }
+    print('');
+    
+  //---------------------------------------------------------------------
+    
+   }
