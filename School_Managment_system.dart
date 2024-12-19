@@ -53,6 +53,23 @@ void main(){
     }
     print('');
     
-  //---------------------------------------------------------------------
+  //--------------------percentage and Final grade-------------------------------------------------
     
+     students.forEach((e) {
+       
+       var calling_grade = e['grades'].values;
+       //double total = calling_grade.length;
+       int sum = calling_grade.reduce((int a, int b) => a + b);
+       double perc = sum / calling_grade.length;
+
+       e['Percentage'] = perc.toStringAsFixed(2);
+     });
+
+     students.forEach((e) {
+      print('Name : ${e['name']} , Percentage : ${e['Percentage']}%');
+     });
+     print('');
+     
+ //---------------------------------------------------------------------------------------------
+     
    }
