@@ -23,7 +23,21 @@ void main() {
       'roll_no': 021,
       'grades': {'Maths': 38, 'Science': 48, 'Eng': 59},
       'Attendance': {'totaldays': 30, 'presentdays': 14}
-    }
+    },
+    {
+      'name': 'Zain',
+      'age': 26,
+      'roll_no': 025,
+      'grades': {'Maths': 48, 'Science': 49, 'Eng': 79},
+      'Attendance': {'totaldays': 30, 'presentdays': 24}
+    },
+    {
+      'name': 'sam',
+      'age': 16,
+      'roll_no': 026,
+      'grades': {'Maths': 18, 'Science': 88, 'Eng': 55},
+      'Attendance': {'totaldays': 30, 'presentdays': 26}
+    },
   ];
   students.forEach((element) {
     print('${element}');
@@ -32,42 +46,42 @@ void main() {
 
 //----------------------------------Search by Roll Number------------------------------------------------
 
-//    print("Enter Your Roll No :");
+   print("Enter Your Roll No :");
 
-//    String? input = stdin.readLineSync();
-//    int input2 = int.parse(input!);
+   String? input = stdin.readLineSync();
+   int input2 = int.parse(input!);
 
-//    students.map((element) => element['roll_no'] == input2);
-//    var search_roll = students.firstWhere((element) => element['roll_no'] == input2);
-//    print('${search_roll}');
-//    print('');
+   students.map((element) => element['roll_no'] == input2);
+   var search_roll = students.firstWhere((element) => element['roll_no'] == input2);
+   print('${search_roll}');
+   print('');
 
 // //---------------------------------update Grades----------------------------------------------------
 
-//   print("Enter the roll no for update the grades");
+  print("Enter the roll no for update the grades");
 
-//   String? input3 = stdin.readLineSync();
-//   int input4 = int.parse(input3!);
+  String? input3 = stdin.readLineSync();
+  int input4 = int.parse(input3!);
 
-//    var std = students.firstWhere((e) => e['roll_no'] == input4);
+   var std = students.firstWhere((e) => e['roll_no'] == input4);
 
-//   if(std != null){
+  if(std != null){
 
-//     print("Enter the subject");
-//     String? input7 = stdin.readLineSync();
+    print("Enter the subject");
+    String? input7 = stdin.readLineSync();
 
-//     print("Enter grades :");
-//     String? input5 = stdin.readLineSync();
-//     int input6 = int.parse(input5!);
+    print("Enter grades :");
+    String? input5 = stdin.readLineSync();
+    int input6 = int.parse(input5!);
 
-//     std['grades'][input7] = input6;
+    std['grades'][input7] = input6;
 
-//     print(std);
+    print(std);
 
-//   }else{
-//     print("Not found");
-//   }
-//   print('');
+  }else{
+    print("Not found");
+  }
+  print('');
 
 //   //--------------------percentage and Final grade-------------------------------------------------
 
@@ -115,15 +129,15 @@ void main() {
 
 //   //------------------------Delete the student by roll no---------------------------------------------------------------------
 
-//      String? inp = stdin.readLineSync();
-//      int rem = int.parse(inp!);
+     String? inp = stdin.readLineSync();
+     int rem = int.parse(inp!);
 
-//       students.removeWhere((e) => e['roll_no'] == rem);
+      students.removeWhere((e) => e['roll_no'] == rem);
 
-//      students.forEach((element) {
-//     print('${element}');
-//     print('');
-//    });
+     students.forEach((element) {
+    print('${element}');
+    print('');
+   });
 
 //--------------------------calculate perc of attendance & allowd only 70%---------------------------------------------------
 
@@ -145,11 +159,11 @@ void main() {
 
   // //--------------------------report card----------------------------------------------
 
-  //  students.forEach((e) {
+   students.forEach((e) {
 
-  //   print("Name : ${e['name']}, Roll_No : ${e['roll_no']}, Grades of All Sub : ${e['grades']}, Final_grade : ${e['Final_Grade']}, Attendance : ${e['Percentage of Attend']}%, Final_Result : ${e['Report']}");
-  //  print('');
-  //  });
+    print("Name : ${e['name']}, Roll_No : ${e['roll_no']}, Grades of All Sub : ${e['grades']}, Final_grade : ${e['Final_Grade']}, Attendance : ${e['Percentage of Attend']}%, Final_Result : ${e['Report']}");
+   print('');
+   });
 
   //---------------------------------Count Students by Age Group--------------------------------------------------
 
@@ -197,7 +211,71 @@ void main() {
   });
   print('');
 
-  //-----------------------Find Top Performers------------------------------------------------
+  //-----------------------Find Top 3 Performers------------------------------------------------
 
+  students.sort((a, b) => b['Total_Number'].compareTo(a['Total_Number']));
+  var top3 = students.take(3);
+
+  top3.forEach((e) {
+    print("${e['name']} got ${e['Total_Number']} marks.");
+    print('');
+  });
+  print('');
+
+//------------------------- Find Subjects with Lowest Average-------------------------------------------------------------------------
+
+Map all_grades = {'maths_grades' : [], 'science_grades' : [], 'eng_grades' : []};
+
+students.forEach((e) {
     
+    var m = e['grades']['Maths'];
+    all_grades['maths_grades'].add(m);
+
+  });
+
+  students.forEach((e) {
+
+    var s = e['grades']['Science'];
+    all_grades['science_grades'].add(s);
+
+  });
+
+  students.forEach((e) {
+
+    var en = e['grades']['Eng'];
+    all_grades['eng_grades'].add(en);
+  });
+
+  int sum_m = all_grades['maths_grades'].reduce((a,b) => a + b);
+  double avg_m = sum_m / all_grades['maths_grades'].length;
+  print('Avg_maths : ${avg_m}');
+  print('');
+// //------------------------------------------------------
+  int sum_s = all_grades['science_grades'].reduce((a,b) => a + b);
+  double avg_s = sum_s / all_grades['science_grades'].length;
+  print('Avg_science : ${avg_s}');
+  print('');
+
+
+// //----------------------------------------------------
+  
+  int sum_e = all_grades['eng_grades'].reduce((a,b) => a + b);
+  double avg_e = (sum_e / all_grades['eng_grades'].length);
+  print('Avg_eng : ${avg_e}');
+  print('');
+
+  Map All_avg = {'Maths_avg' : avg_m , 'Science_avg' : avg_s, 'Eng_avg' : avg_e}; 
+  students.add({'All_avg' : All_avg});
+  print('${students}');
+  print('');
+// //---------------------------------------------------
+
+     String Lowest_avg = All_avg.entries.reduce((a,b)=> a.value < b.value ? a:b).key;
+     double Lowest_avg1 = All_avg.entries.reduce((a,b)=> a.value < b.value ? a:b).value;
+     print("Lowest Avg Subject is ${Lowest_avg} = ${Lowest_avg1}");
+     print('');
+
+//---------------------------------------------------------------------------------------------
+
+
 }
