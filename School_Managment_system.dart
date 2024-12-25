@@ -250,14 +250,11 @@ students.forEach((e) {
   double avg_m = sum_m / all_grades['maths_grades'].length;
   print('Avg_maths : ${avg_m}');
   print('');
-// //------------------------------------------------------
+
   int sum_s = all_grades['science_grades'].reduce((a,b) => a + b);
   double avg_s = sum_s / all_grades['science_grades'].length;
   print('Avg_science : ${avg_s}');
   print('');
-
-
-// //----------------------------------------------------
   
   int sum_e = all_grades['eng_grades'].reduce((a,b) => a + b);
   double avg_e = (sum_e / all_grades['eng_grades'].length);
@@ -268,7 +265,7 @@ students.forEach((e) {
   students.add({'All_avg' : All_avg});
   print('${students}');
   print('');
-// //---------------------------------------------------
+
 
      String Lowest_avg = All_avg.entries.reduce((a,b)=> a.value < b.value ? a:b).key;
      double Lowest_avg1 = All_avg.entries.reduce((a,b)=> a.value < b.value ? a:b).value;
