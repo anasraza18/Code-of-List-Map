@@ -14,7 +14,7 @@ void main() {
       'name': 'Ali',
       'age': 23,
       'roll_no': 034,
-      'grades': {'Maths': 68, 'Science': 88, 'Eng': 9},
+      'grades': {'Maths': 8, 'Science': 8, 'Eng': 9},
       'Attendance': {'totaldays': 30, 'presentdays': 20}
     },
     {
@@ -25,7 +25,7 @@ void main() {
       'Attendance': {'totaldays': 30, 'presentdays': 14}
     },
     {
-      'name': 'Zain',
+      'name': 'Arif',
       'age': 26,
       'roll_no': 025,
       'grades': {'Maths': 48, 'Science': 49, 'Eng': 79},
@@ -85,7 +85,10 @@ void main() {
   }
   print('');
 
-//   //--------------------percentage and Final grade-------------------------------------------------
+   //--------------------percentage and Final grade & Partition Students by Pass/Fail-------------------------------------------------
+  
+  List<String> pass_s = [];
+  List<String> fail_s = [];
 
   students.forEach((e) {
     var calling_grade = e['grades'].values;
@@ -121,12 +124,26 @@ void main() {
     e['Report'] = report;
     e['Final_Grade'] = grad;
     e['Percentage'] = perc.toStringAsFixed(2);
+
+    if (perc >= 40) {
+      pass_s.add(e['name']!);
+    }
+    if (perc < 40) {
+      fail_s.add(e['name']);
+    }
   });
+  print('Passing Student : ${pass_s}');
+  print('Passing Student : ${fail_s}');
+  print('');
 
   students.forEach((e) {
     print(
         'Name : ${e['name']} , Percentage : ${e['Percentage']}% , Final_grade : ${e['Final_Grade']}, Report : ${e['Report']}');
   });
+  print('');
+
+  print('Passing Student : ${pass_s}');
+  print('Passing Student : ${fail_s}');
   print('');
 
 //   //------------------------Delete the student by roll no---------------------------------------------------------------------
@@ -316,7 +333,7 @@ void main() {
   });
   print('');
 
-//---------------------------------------------------------------------------------------------------
+//-----------------------------Generate Class Summary----------------------------------------------------------------------
 
-   
+  
 }
