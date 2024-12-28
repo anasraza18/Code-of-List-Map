@@ -40,7 +40,7 @@ void main() {
     },
   ];
 
-  List class2 = [2,3,6,8,6,4];
+   List class2 = [2,3,6,8,6,4];
 
   students.forEach((element) {
     print('${element}');
@@ -125,16 +125,15 @@ void main() {
     e['Final_Grade'] = grad;
     e['Percentage'] = perc.toStringAsFixed(2);
 
-    if (perc >= 40) {
-      pass_s.add(e['name']!);
-    }
-    if (perc < 40) {
-      fail_s.add(e['name']);
-    }
+    
+    
+      if(perc >= 40){
+        pass_s.add(e['name']!);
+      } if(perc < 40){
+        fail_s.add(e['name']);
+      }
+    
   });
-  print('Passing Student : ${pass_s}');
-  print('Passing Student : ${fail_s}');
-  print('');
 
   students.forEach((e) {
     print(
@@ -143,11 +142,11 @@ void main() {
   print('');
 
   print('Passing Student : ${pass_s}');
-  print('Passing Student : ${fail_s}');
+  print('Passing Student : ${fail_s}');  
   print('');
 
-//   //------------------------Delete the student by roll no---------------------------------------------------------------------
-
+  //------------------------Delete the student by roll no---------------------------------------------------------------------
+  stdout.write('Enter The roll_no for delete the data :');
   String? inp = stdin.readLineSync();
   int rem = int.parse(inp!);
 
@@ -158,7 +157,7 @@ void main() {
     print('');
   });
 
-//--------------------------calculate perc of attendance & allowd only 70%---------------------------------------------------
+// //--------------------------calculate perc of attendance & allowd only 70%---------------------------------------------------
 
   students.forEach((e) {
     var total_days = e['Attendance']['totaldays'];
@@ -176,7 +175,7 @@ void main() {
   });
   print('');
 
-  // //--------------------------report card----------------------------------------------
+//   // //--------------------------report card----------------------------------------------
 
   students.forEach((e) {
     print(
@@ -184,7 +183,7 @@ void main() {
     print('');
   });
 
-  //---------------------------------Count Students by Age Group--------------------------------------------------
+//   //---------------------------------Count Students by Age Group--------------------------------------------------
 
   students.forEach((e) {
     String rang = '';
@@ -204,7 +203,7 @@ void main() {
   });
   print('');
 
-  //--------------------------Assign Extra-Curricular Activities-------------------------------------------
+//   //--------------------------Assign Extra-Curricular Activities-------------------------------------------
 
   students.forEach((e) {
     if (e['Total_Number'] > 250) {
@@ -215,7 +214,7 @@ void main() {
     print('');
   });
   print('');
-//------------------------------Promote Students----------------------------------------------
+// //------------------------------Promote Students----------------------------------------------
 
   students.forEach((e) {
     double attendancePercentage =
@@ -230,7 +229,7 @@ void main() {
   });
   print('');
 
-  //-----------------------Find Top 3 Performers------------------------------------------------
+//   //-----------------------Find Top 3 Performers------------------------------------------------
 
   students.sort((a, b) => b['Total_Number'].compareTo(a['Total_Number']));
   var top3 = students.take(3);
@@ -241,7 +240,7 @@ void main() {
   });
   print('');
 
-//------------------------- Find Subjects with Lowest Average-------------------------------------------------------------------------
+// //------------------------- Find Subjects with Lowest Average-------------------------------------------------------------------------
 
   Map all_grades = {'maths_grades': [], 'science_grades': [], 'eng_grades': []};
 
@@ -287,14 +286,14 @@ void main() {
   print("Lowest Avg Subject is ${Lowest_avg} = ${Lowest_avg1}");
   print('');
 
-//--------------------------------Merge Multiple Classes-------------------------------------------------------------
+// //--------------------------------Merge Multiple Classes-------------------------------------------------------------
 
   List merge = List.from(students + class2);
   merge.toSet();
   print(merge);
   print('');
 
-//---------------------------------Find Mising Data---------------------------------------------------------------------------
+// //---------------------------------Find Mising Data---------------------------------------------------------------------------
 
    List required_key = ['name','age','roll_no','grades','Attendance','Activities'];
    
@@ -328,12 +327,34 @@ void main() {
 
   students.forEach((e) {
     e['grades'][input_sub] += input_bonus1;
-
     print('${e['grades']}');
   });
+  
   print('');
 
-//-----------------------------Generate Class Summary----------------------------------------------------------------------
+//------------------------------------Generate Class Summary----------------------------
 
+   print(': Generate Class Summary :');
+   print('');
+
+   var count = students.length;
+   print('Total No of Students : ${count}');
+   print('');
+
+   print("Average Grades for the class :");
+   students.forEach((e) {
+    print('${e['name']} : ${e['Percentage']}');
+   });
+   print('');
+
+   print("The List Of Students who are passing :");
+   students.forEach((e) {
+    if(e['Final_Grade'] != 'Fail'){
+    print('${e['name']} : ${e['Percentage']}% : ${e['Report']}');
+    }
+   });
+
+//---------------------------------Subject-Wise Top Scorer------------------------------------------------------
   
+   
 }
